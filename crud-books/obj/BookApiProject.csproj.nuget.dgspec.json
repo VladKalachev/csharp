@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/crud-books.csproj": {}
+    "/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/BookApiProject.csproj": {}
   },
   "projects": {
-    "/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/crud-books.csproj": {
+    "/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/BookApiProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/crud-books.csproj",
-        "projectName": "crud-books",
-        "projectPath": "/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/crud-books.csproj",
+        "projectUniqueName": "/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/BookApiProject.csproj",
+        "projectName": "BookApiProject",
+        "projectPath": "/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/BookApiProject.csproj",
         "packagesPath": "/Users/vladkalachev/.nuget/packages/",
         "outputPath": "/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/",
         "projectStyle": "PackageReference",
@@ -40,8 +40,16 @@
         "netcoreapp2.2": {
           "dependencies": {
             "Microsoft.AspNetCore.All": {
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[2.2.3, )"
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",

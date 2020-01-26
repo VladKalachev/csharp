@@ -1,0 +1,5 @@
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/crud-books.csprojAssemblyReference.cache
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/crud-books.RazorAssemblyInfo.cache
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/crud-books.RazorAssemblyInfo.cs
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/crud-books.AssemblyInfoInputs.cache
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/crud-books.AssemblyInfo.cs

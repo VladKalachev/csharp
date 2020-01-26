@@ -1,0 +1,16 @@
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/BookApiProject.csprojAssemblyReference.cache
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/BookApiProject.RazorAssemblyInfo.cache
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/BookApiProject.RazorAssemblyInfo.cs
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/BookApiProject.AssemblyInfoInputs.cache
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/BookApiProject.AssemblyInfo.cs
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/bin/Debug/netcoreapp2.2/appsettings.Development.json
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/bin/Debug/netcoreapp2.2/appsettings.json
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/bin/Debug/netcoreapp2.2/Properties/launchSettings.json
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/bin/Debug/netcoreapp2.2/BookApiProject.deps.json
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/bin/Debug/netcoreapp2.2/BookApiProject.runtimeconfig.json
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/bin/Debug/netcoreapp2.2/BookApiProject.runtimeconfig.dev.json
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/bin/Debug/netcoreapp2.2/BookApiProject.dll
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/bin/Debug/netcoreapp2.2/BookApiProject.pdb
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/BookApiProject.RazorTargetAssemblyInfo.cache
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/BookApiProject.dll
+/Users/vladkalachev/Desktop/Tehnoserv/csharp/crud-books/obj/Debug/netcoreapp2.2/BookApiProject.pdb
