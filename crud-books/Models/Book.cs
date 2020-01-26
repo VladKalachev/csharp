@@ -10,5 +10,7 @@ namespace BookApiProject.Models
         public string Title { get; set; }
         public DateTime DatePublished { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<BookAuthor> BookAuthors { get; set; }
+        public virtual ICollection<BookCategory> BookCategories { get; set; }
     }
 }
