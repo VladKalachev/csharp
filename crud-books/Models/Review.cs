@@ -1,4 +1,4 @@
-namespace crud_books.Models
+namespace BookApiProject.Models
 {
     public class Review
     {
@@ -6,5 +6,6 @@ namespace crud_books.Models
         public string Headline { get; set; }
         public string ReviewText { get; set; }
         public int Rating { get; set; }
+        public virtual Reviewer Reviewer { get; set; }
     }
 }

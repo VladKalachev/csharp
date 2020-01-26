@@ -14341,7 +14341,7 @@
     ],
     "CSharpLanguageVersion": 800
   },
-  "RootNamespace": "crud_books",
+  "RootNamespace": "BookApiProject",
   "Documents": [],
   "SerializationFormat": "0.2"
 }

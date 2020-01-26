@@ -1,6 +1,7 @@
 using System;
+using System.Collections.Generic;
 
-namespace crud_books.Models
+namespace BookApiProject.Models
 {
     public class Book
     {
@@ -8,5 +9,6 @@ namespace crud_books.Models
         public string Isbn { get; set; }
         public string Title { get; set; }
         public DateTime DatePublished { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

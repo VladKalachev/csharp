@@ -1,4 +1,4 @@
-namespace crud_books.Models
+namespace BookApiProject.Models
 {
     public class Category
     {
