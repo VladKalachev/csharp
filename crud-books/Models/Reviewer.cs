@@ -12,7 +12,7 @@ namespace BookApiProject.Models
 
         [Required]
         [MaxLength(100, ErrorMessage = "Name cannot be more than 100 characters")]
-        public string FirtName { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
         [MaxLength(100, ErrorMessage = "Name cannot be more than 100 characters")]
