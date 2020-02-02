@@ -30,7 +30,7 @@ namespace BookApiProject
             services.AddDbContext<BookDbContext>(opt => opt.UseSqlite(connectionString));
 
             services.AddScoped<ICountryRepository, CountryRepository>();
-            // services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             // services.AddScoped<IReviewerRepository, ReviewerRepository>();
             // services.AddScoped<IReviewRepository, ReviewRepository>();
             // services.AddScoped<IAuthorRepository, AuthorRepository>();
