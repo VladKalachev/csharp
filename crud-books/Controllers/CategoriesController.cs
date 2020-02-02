@@ -11,60 +11,60 @@ namespace BookApiProject.Controllers
     [ApiController]
     public class CategoriesController : Controller
     {
-        private ICountryRepository _countryRepository;
+        private ICategoryRepository _categoryRepository;
 
-        public CategoriesController(ICountryRepository countryRepository)
+        public CategoriesController(ICategoryRepository categoryRepository)
         {
-            _countryRepository = countryRepository;
+            _categoryRepository = categoryRepository;
         }
-        //api/countries
+        //api/categories
         [HttpGet]
         [ProducesResponseType(400)]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<CountryDto>))]
-        public IActionResult GetCountries()
+        [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
+        public IActionResult GetCategories()
         {   
-            var countries = _countryRepository.GetCountries().ToList();
+            var categories = _categoryRepository.GetCategories().ToList();
 
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var countriesDto = new List<CountryDto>();
-            foreach (var country in countries)
+            var categoriesDto = new List<CategoryDto>();
+            foreach (var category in categories)
             {
-                countriesDto.Add(new CountryDto
+                categoriesDto.Add(new CategoryDto
                 {
-                    Id = country.Id,
-                    Name = country.Name
+                    Id = category.Id,
+                    Name = category.Name
                 });
             }
 
-            return Ok(countriesDto);
+            return Ok(categoriesDto);
         }
 
 
-         //api/countries/countryId
-        [HttpGet("{countryId}")]
+         //api/categories/categoryId
+        [HttpGet("{categoryId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<CountryDto>))]
-        public IActionResult GetCountry(int countryId)
+        [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
+        public IActionResult GetCountry(int categoryId)
         {   
 
-            if(!_countryRepository.CountryExists(countryId))
+            if(!_categoryRepository.CategoryExists(categoryId))
                 return NotFound();
 
-            var country = _countryRepository.GetCountry(countryId);
+            var category = _categoryRepository.GetCategory(categoryId);
 
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var countryDto = new CountryDto()
+            var categoryDto = new CategoryDto()
             {
-                Id = country.Id,
-                Name = country.Name
+                Id = category.Id,
+                Name = category.Name
             };
 
-            return Ok(countryDto);
+            return Ok(categoryDto);
         }
 
     }
