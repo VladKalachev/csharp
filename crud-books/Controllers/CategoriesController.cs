@@ -67,5 +67,35 @@ namespace BookApiProject.Controllers
             return Ok(categoryDto);
         }
 
+
+
+         //api/categories/books/bookId
+        [HttpGet("books/{bookId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
+        public IActionResult GetAllCategoriesForABook(int bookId)
+        {
+            // TO DO - Validate the book exists
+
+            var categories = _categoryRepository.GetAllCategoriesForABook(bookId);
+
+             if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var categoryDto = new List<CategoryDto>();
+            
+            foreach (var category in categories)
+            {
+                categoryDto.Add(new CategoryDto()
+                {
+                    Id = category.Id,
+                    Name = category.Name
+                });
+            }
+
+            return Ok(categoryDto);
+        }
+
     }
 }
