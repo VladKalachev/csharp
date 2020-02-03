@@ -72,7 +72,7 @@ namespace BookApiProject.Controllers
         [HttpGet("authors/{authorId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<CountryDto>))]
+        [ProducesResponseType(200, Type = typeof(CountryDto))]
         public IActionResult GetCountryOfAnAuthor(int authorId)
         {
             // TO DO - Validate the author exists
