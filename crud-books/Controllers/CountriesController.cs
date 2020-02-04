@@ -92,6 +92,36 @@ namespace BookApiProject.Controllers
         }
 
         // TO DO GetAuthorsFromACountry
+        // api/countries/countryId/authors
+        [HttpGet("{countryId}/authors")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<AuthorDto>))]
+        public IActionResult GetAuthorsFromACountry(int countryId)
+        {
+            if(!_countryRepository.CountryExists(countryId))
+                return NotFound();
+
+            var authors = _countryRepository.GetAuthorsFromACountry(countryId);
+
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+            
+            var authorDto = new List<AuthorDto>();
+
+            foreach (var author in authors)
+            {
+                authorDto.Add(new AuthorDto
+                {
+                    Id = author.Id,
+                    FirstName = author.FirstName,
+                    LastName = author.LastName
+                });
+            }
+
+            return Ok(authorDto);
+        }
+
 
     }
 }
