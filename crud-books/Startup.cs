@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookApiProject
@@ -25,6 +26,17 @@ namespace BookApiProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+             // Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Reactivities API",
+                    Version = "v1"
+                });
+
+            });
 
             var connectionString = Configuration.GetConnectionString("bookDbConnectionString");
             services.AddDbContext<BookDbContext>(opt => opt.UseSqlite(connectionString));
@@ -51,6 +63,12 @@ namespace BookApiProject
             // });
             
             // context.SeedDataContext();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseMvc();
         }
