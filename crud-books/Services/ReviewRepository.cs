@@ -35,8 +35,8 @@ namespace BookApiProject.Services
 
         public Book GetBookOfAReview(int reviewId)
         {
-            //var bookId = _reviewContext.Reviews.Where(r => r.Id == reviewId).Select(b => b.Book.Id).FirstOrDefault();
-            return null; //_reviewContext.Books.Where(b => b.Id == bookId).FirstOrDefault();
+            var bookId = _reviewContext.Reviews.Where(r => r.Id == reviewId).Select(b => b.Book.Id).FirstOrDefault();
+            return _reviewContext.Books.Where(b => b.Id == bookId).FirstOrDefault();
         }
 
         public Review GetReview(int reviewId)
@@ -51,7 +51,7 @@ namespace BookApiProject.Services
 
         public ICollection<Review> GetReviewsOfABook(int bookId)
         {
-            return null;// _reviewContext.Reviews.Where(b => b.Book.Id == bookId).ToList();
+            return _reviewContext.Reviews.Where(b => b.Book.Id == bookId).ToList();
         }
 
         public bool ReviewExists(int reviewId)

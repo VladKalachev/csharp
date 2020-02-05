@@ -73,12 +73,12 @@ namespace BookApiProject.Services
 
         public decimal GetBookRating(int bookId)
         {
-            // var reviews = _bookDbContext.Reviews.Where(r => r.Book.Id == bookId);
+            var reviews = _bookDbContext.Reviews.Where(r => r.Book.Id == bookId);
 
-            // if (reviews.Count() <= 0)
-            //     return 0;
+            if (reviews.Count() <= 0)
+                return 0;
 
-            return 1;//((decimal)reviews.Sum(r => r.Rating) / reviews.Count());
+            return ((decimal)reviews.Sum(r => r.Rating) / reviews.Count());
         }
 
         public ICollection<Book> GetBooks()
