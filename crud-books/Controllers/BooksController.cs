@@ -124,5 +124,27 @@ namespace BookApiProject.Controllers
             return Ok(rating);
         }
 
+        //api/books
+        // [HttpPost]
+        // public IActionResult CreateBook(List<int> authorsId, List<int> categoriesId, Book book)
+        // {
+
+        // }
+
+        // //api/books/bookId
+        // [HttpPut]
+        // public IActionResult UpdateBook(List<int> authorsId, List<int> categoriesId, Book book)
+        // {
+            
+        // }
+
+        // //api/books/bookId
+        // [HttpDelete]
+        // public IActionResult DeleteBook(Book book)
+        // {
+        //     _bookRepository.DeleteBook(book);
+
+        // }
+
     }
 }
