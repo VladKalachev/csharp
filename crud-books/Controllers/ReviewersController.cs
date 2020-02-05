@@ -42,5 +42,68 @@ namespace BookApiProject.Controllers
             
             return Ok(reviewerDto);
         }
+
+        //api/reviewers/reviewerId
+        [HttpGet("{reviewerId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(200, Type = typeof(ReviewerDto))]
+        public IActionResult GetReviewer (int reviewerId)
+        {
+            if(!_reviewerRepository.ReviewerExists(reviewerId))
+                return NotFound();
+
+            var reviewer = _reviewerRepository.GetReviewer(reviewerId);
+
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var reviewersDto = new ReviewerDto()
+            {
+                Id = reviewer.Id,
+                FirstName = reviewer.FirstName,
+                LastName = reviewer.LastName
+            };
+
+            return Ok(reviewersDto);
+        }
+
+
+        //api/reviewers/reviewerId/reviews
+        [HttpGet("{reviewerId}/reviews")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ReviewDto>))]
+        public IActionResult GetReviewsByReviewer(int reviewerId)
+        {
+            if(!_reviewerRepository.ReviewerExists(reviewerId))
+                    return NotFound();
+            
+            var reviewer = _reviewerRepository.GetReviewsByReviewer(reviewerId);
+
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var reviewsDto = new List<ReviewDto>();
+            foreach (var review in reviewer)
+            {
+                reviewsDto.Add(new ReviewDto()
+                {
+                    Id = review.Id,
+                    Headline = review.Headline,
+                    Rating = review.Rating,
+                    ReviewText = review.ReviewText,
+                });
+            }
+
+            return Ok(reviewsDto);
+        }
+
+
+        // [HttpGet]
+        // public IActionResult GetReviewerOfAReview(int reviewId)
+        // {
+        //     return null;
+        // }
     }
 }
