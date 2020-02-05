@@ -12,9 +12,11 @@ namespace BookApiProject.Controllers
     public class CountriesController : Controller
     {
         private ICountryRepository _countryRepository;
+        private IAuthorRepository _authorRepository;
 
-        public CountriesController(ICountryRepository countryRepository)
+        public CountriesController(ICountryRepository countryRepository, IAuthorRepository authorRepository)
         {
+            _authorRepository = authorRepository;
             _countryRepository = countryRepository;
         }
         //api/countries
@@ -75,11 +77,12 @@ namespace BookApiProject.Controllers
         [ProducesResponseType(200, Type = typeof(CountryDto))]
         public IActionResult GetCountryOfAnAuthor(int authorId)
         {
-            // TO DO - Validate the author exists
+            if(!_authorRepository.AuthorExists(authorId))
+                return NotFound();
 
             var country = _countryRepository.GetCountryOfAnAuthor(authorId);
 
-             if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var countryDto = new CountryDto()
@@ -99,14 +102,14 @@ namespace BookApiProject.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<AuthorDto>))]
         public IActionResult GetAuthorsFromACountry(int countryId)
         {
-            if(!_countryRepository.CountryExists(countryId))
+            if (!_countryRepository.CountryExists(countryId))
                 return NotFound();
 
             var authors = _countryRepository.GetAuthorsFromACountry(countryId);
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            
+
             var authorDto = new List<AuthorDto>();
 
             foreach (var author in authors)

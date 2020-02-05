@@ -11,10 +11,12 @@ namespace BookApiProject.Controllers
     public class ReviewersController: Controller
     {
         private IReviewerRepository _reviewerRepository;
+        private IReviewRepository _reviewRepository;
 
-        public ReviewersController(IReviewerRepository reviewerRepository)
+        public ReviewersController(IReviewerRepository reviewerRepository, IReviewRepository reviewRepository)
         {
             _reviewerRepository = reviewerRepository;
+            _reviewRepository = reviewRepository;
         }
 
         //api/reviewers
@@ -100,10 +102,29 @@ namespace BookApiProject.Controllers
         }
 
 
-        // [HttpGet]
-        // public IActionResult GetReviewerOfAReview(int reviewId)
-        // {
-        //     return null;
-        // }
+        //api/reviewers/reviewId/reviewer
+        [HttpGet("{reviewId}/reviewer")]
+        [ProducesResponseType(200, Type = typeof(ReviewerDto))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult GetReviewerOfAReview(int reviewId)
+        {
+            if (!_reviewRepository.ReviewExists(reviewId))
+                return NotFound();
+
+            var reviewer = _reviewerRepository.GetReviewerOfAReview(reviewId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var reviewerDto = new ReviewerDto()
+            {
+                Id = reviewer.Id,
+                FirstName = reviewer.FirstName,
+                LastName = reviewer.LastName
+            };
+
+            return Ok(reviewerDto);
+        }
     }
 }
