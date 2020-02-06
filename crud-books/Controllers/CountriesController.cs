@@ -128,6 +128,10 @@ namespace BookApiProject.Controllers
 
         //api/countries
         [HttpPost]
+        [ProducesResponseType(201, Type = typeof(Country))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(422)]
+        [ProducesResponseType(500)]
         public ActionResult CreateCountry([FromBody]Country countryToCreate)
         {
             if(countryToCreate == null)

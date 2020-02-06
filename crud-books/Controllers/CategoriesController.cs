@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BookApiProject.Dtos;
+using BookApiProject.Models;
 using BookApiProject.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,7 @@ namespace BookApiProject.Controllers
             _categoryRepository = categoryRepository;
             _bookRepository = bookRepository;
         }
+
         //api/categories
         [HttpGet]
         [ProducesResponseType(400)]
@@ -43,9 +45,8 @@ namespace BookApiProject.Controllers
             return Ok(categoriesDto);
         }
 
-
-         //api/categories/categoryId
-        [HttpGet("{categoryId}")]
+        //api/categories/categoryId
+        [HttpGet("{categoryId}", Name = "GetCategory")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
@@ -69,9 +70,7 @@ namespace BookApiProject.Controllers
             return Ok(categoryDto);
         }
 
-
-
-         //api/categories/books/bookId
+        //api/categories/books/bookId
         [HttpGet("books/{bookId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -100,7 +99,7 @@ namespace BookApiProject.Controllers
             return Ok(categoryDto);
         }
 
-        // TO DO GetAllBooksForCategory
+
         // api/categories/categoryId/books
         [HttpGet("{categoryId}/books")]
         [ProducesResponseType(400)]
@@ -131,6 +130,42 @@ namespace BookApiProject.Controllers
 
             return Ok(bookDto);
         }
+
+        //api/categories
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(Category))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(422)]
+        [ProducesResponseType(500)]
+        public ActionResult CreateCategory([FromBody]Category categoryToCreate)
+        {
+            if(categoryToCreate == null)
+                return BadRequest(ModelState);
+            
+            var category = _categoryRepository.GetCategories()
+                .Where(c => c.Name.Trim().ToUpper() == categoryToCreate.Name.Trim().ToUpper())
+                .FirstOrDefault();
+                
+            if (category != null)
+            {
+                ModelState.AddModelError("", $"Country {categoryToCreate.Name} already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(!_categoryRepository.CreateCategory(categoryToCreate))
+            {
+                ModelState.AddModelError("", $"Something went wrong saving {categoryToCreate.Name}");
+                return StatusCode(500, ModelState);
+            }
+
+            return CreatedAtRoute("GetCategory", new { categoryId = categoryToCreate.Id }, categoryToCreate);
+            
+        }
+
+
 
 
     }
