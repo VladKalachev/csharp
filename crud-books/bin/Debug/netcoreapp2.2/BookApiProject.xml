@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BookApiProject</name>
+    </assembly>
+    <members>
+        <member name="T:BookApiProject.Controllers.AuthorsController">
+            Controller Authors
+        </member>
+        <member name="M:BookApiProject.Controllers.AuthorsController.#ctor(BookApiProject.Services.IAuthorRepository,BookApiProject.Services.IBookRepository,BookApiProject.Services.ICountryRepository)">
+            Constructor
+        </member>
+        <member name="M:BookApiProject.Controllers.AuthorsController.GetAuthors">
+            <summary>
+            Получить список авторов
+            </summary>
+            <returns>Список авторов</returns>
+        </member>
+        <member name="M:BookApiProject.Controllers.AuthorsController.GetAuthor(System.Int32)">
+            <summary>
+            Получить автора по id
+            </summary>
+            <param name="authorId">Id автора</param>
+            <returns>Получаем автора по его Id</returns>
+        </member>
+        <member name="M:BookApiProject.Controllers.AuthorsController.GetBooksByAuthor(System.Int32)">
+            <summary>
+            Получить список книг по id автора
+            </summary>
+        </member>
+        <member name="M:BookApiProject.Controllers.AuthorsController.GetAuthorsOfABook(System.Int32)">
+            <summary>
+            Получить список книг автора
+            </summary>
+        </member>
+        <member name="T:BookApiProject.Controllers.BooksController">
+            Controller Books
+        </member>
+        <member name="M:BookApiProject.Controllers.BooksController.#ctor(BookApiProject.Services.IBookRepository,BookApiProject.Services.IAuthorRepository,BookApiProject.Services.ICategoryRepository,BookApiProject.Services.IReviewRepository)">
+            Constructor Books
+        </member>
+        <member name="M:BookApiProject.Controllers.BooksController.GetBooks">
+            <summary>
+            Получить список книг
+            </summary>
+        </member>
+        <member name="M:BookApiProject.Controllers.BooksController.GetBook(System.Int32)">
+            <summary>
+            Получить книгу по Id
+            </summary>
+        </member>
+        <member name="M:BookApiProject.Controllers.BooksController.GetBook(System.String)">
+            <summary>
+            Получить книгу по Isbn
+            </summary>
+        </member>
+        <member name="M:BookApiProject.Controllers.BooksController.GetBookRating(System.Int32)">
+            <summary>
+            Получить рейтирг книги
+            </summary>
+        </member>
+    </members>
+</doc>

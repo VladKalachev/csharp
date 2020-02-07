@@ -28,3 +28,5 @@ C:\dev\csharp\crud-books\obj\Debug\netcoreapp2.2\BookApiProject.AssemblyInfo.cs
 C:\dev\csharp\crud-books\obj\Debug\netcoreapp2.2\BookApiProject.RazorTargetAssemblyInfo.cache
 C:\dev\csharp\crud-books\obj\Debug\netcoreapp2.2\BookApiProject.dll
 C:\dev\csharp\crud-books\obj\Debug\netcoreapp2.2\BookApiProject.pdb
+C:\dev\csharp\crud-books\bin\Debug\netcoreapp2.2\BookApiProject.xml
+C:\dev\csharp\crud-books\obj\Debug\netcoreapp2.2\BookApiProject.xml

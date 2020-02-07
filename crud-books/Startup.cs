@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO;
+using System.Reflection;
 
 namespace BookApiProject
 {
@@ -35,10 +37,15 @@ namespace BookApiProject
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Reactivities API",
-                    Version = "v1"
+                    Title = "Library API",
+                    Version = "v1",
+                    Description = "A simple example ASP.NET Core Web API",
                 });
-
+                // comments
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+  
             });
 
             var connectionString = Configuration.GetConnectionString("bookDbConnectionString");

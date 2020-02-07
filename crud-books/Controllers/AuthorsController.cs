@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookApiProject.Controllers
 {
+    /// Controller Authors
     [Route("api/[controller]")]
     [ApiController]
     public class AuthorsController: Controller
@@ -16,6 +17,8 @@ namespace BookApiProject.Controllers
         private IAuthorRepository _authorRepository;
         private IBookRepository _bookRepository;
         private ICountryRepository _countryRepository;
+        
+        /// Constructor
         public AuthorsController(IAuthorRepository authorRepository, IBookRepository bookRepository,
             ICountryRepository countryRepository)
         {
@@ -25,6 +28,10 @@ namespace BookApiProject.Controllers
         }
 
         //api/authors
+        /// <summary>
+        /// Получить список авторов
+        /// </summary>
+        /// <returns>Список авторов</returns>
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<AuthorDto>))]
         [ProducesResponseType(400)]
@@ -50,7 +57,12 @@ namespace BookApiProject.Controllers
             return Ok(authorsDto);    
         }
 
-         //api/authors/authorId
+        //api/authors/authorId
+        /// <summary>
+        /// Получить автора по id
+        /// </summary>
+        /// <param name="authorId">Id автора</param>
+        /// <returns>Получаем автора по его Id</returns>
         [HttpGet("{authorId}", Name = "GetAuthor")]
         [ProducesResponseType(200, Type = typeof(AuthorDto))]
         [ProducesResponseType(400)]
@@ -76,6 +88,9 @@ namespace BookApiProject.Controllers
         }
 
         //api/authors/authorId/books
+        /// <summary>
+        /// Получить список книг по id автора
+        /// </summary>
         [HttpGet("{authorId}/books")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<BookDto>))]
         [ProducesResponseType(400)]
@@ -106,6 +121,9 @@ namespace BookApiProject.Controllers
         }
        
         //api/authors/books/bookId
+        /// <summary>
+        /// Получить список книг автора
+        /// </summary>
         [HttpGet("books/{bookId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<AuthorDto>))]
         [ProducesResponseType(400)]

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookApiProject.Controllers
 {
+    /// Controller Books
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController: Controller
@@ -18,6 +19,7 @@ namespace BookApiProject.Controllers
         private ICategoryRepository _categoryRepository;
         private IReviewRepository _reviewRepository;
 
+        /// Constructor Books
         public BooksController(IBookRepository bookRepository, IAuthorRepository authorRepository, 
             ICategoryRepository categoryRepository, IReviewRepository reviewRepository )
         {
@@ -28,6 +30,9 @@ namespace BookApiProject.Controllers
         }
 
         //api/books
+        /// <summary>
+        /// Получить список книг
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<BookDto>))]
         [ProducesResponseType(400)]
@@ -54,7 +59,10 @@ namespace BookApiProject.Controllers
             return Ok(booksDto);    
         }
 
-         //api/books/bookId
+        //api/books/bookId
+        /// <summary>
+        /// Получить книгу по Id
+        /// </summary>
         [HttpGet("{bookId}", Name = "GetBook")]
         [ProducesResponseType(200, Type = typeof(BookDto))]
         [ProducesResponseType(400)]
@@ -81,6 +89,9 @@ namespace BookApiProject.Controllers
         }
 
         //api/books/isbn/bookIsbn
+        /// <summary>
+        /// Получить книгу по Isbn
+        /// </summary>
         [HttpGet("ISBN/{bookIsbn}")]
         [ProducesResponseType(200, Type = typeof(BookDto))]
         [ProducesResponseType(400)]
@@ -107,6 +118,9 @@ namespace BookApiProject.Controllers
         }
 
         //api/books/bookId/rating
+        /// <summary>
+        /// Получить рейтирг книги
+        /// </summary>
         [HttpGet("{bookId}/rating")]
         [ProducesResponseType(200, Type = typeof(decimal))]
         [ProducesResponseType(400)]
