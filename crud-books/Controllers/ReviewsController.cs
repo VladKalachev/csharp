@@ -132,5 +132,28 @@ namespace BookApiProject.Controllers
 
             return Ok(bookDto);
         }
+
+        //api/reviews
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(Review))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public IActionResult CreateReview([FromBody]Review reviewToCreate)
+        {
+            if (reviewToCreate == null)
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_reviewRepository.CreateReview(reviewToCreate))
+            {
+                ModelState.AddModelError("", $"Something went wrong saving " +
+                                            $"{reviewToCreate.ReviewText}");
+                return StatusCode(500, ModelState);
+            }
+
+            return CreatedAtRoute("GetReview", new { reviewId = reviewToCreate.Id }, reviewToCreate);
+        }
     }
 }
