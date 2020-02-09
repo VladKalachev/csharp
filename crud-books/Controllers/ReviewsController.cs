@@ -155,5 +155,63 @@ namespace BookApiProject.Controllers
 
             return CreatedAtRoute("GetReview", new { reviewId = reviewToCreate.Id }, reviewToCreate);
         }
+
+        //api/reviews/reviewId
+        [HttpPut("{reviewId}")]
+        [ProducesResponseType(204)] //no content
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(422)] 
+        [ProducesResponseType(500)]        
+        public IActionResult UpdateReview(int reviewId, [FromBody]Review updatedReviewInfo)
+        {
+            if (updatedReviewInfo == null)
+                return BadRequest(ModelState);
+
+            if (reviewId != updatedReviewInfo.Id)
+                return BadRequest(ModelState);
+
+            if (!_reviewRepository.ReviewExists(reviewId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+             if (!_reviewRepository.UpdateReview(updatedReviewInfo))
+            {
+                 ModelState.AddModelError("", $"Something went wrong saving " +
+                                            $"{updatedReviewInfo.ReviewText}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+         //api/reviews/reviewId
+        [HttpDelete("{reviewId}")]
+        [ProducesResponseType(204)] //no content
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public IActionResult DeleteReview(int reviewId)
+        {
+            if (!_reviewRepository.ReviewExists(reviewId))
+                return NotFound();
+
+            var reviewToDelete = _reviewRepository.GetReview(reviewId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_reviewRepository.DeleteReview(reviewToDelete))
+            {
+                ModelState.AddModelError("", $"Something went wrong deleting review");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+
     }
 }
