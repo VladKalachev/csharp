@@ -33,6 +33,11 @@
             Получить список книг автора
             </summary>
         </member>
+        <member name="M:BookApiProject.Controllers.AuthorsController.CreateAuthor(BookApiProject.Models.Author)">
+            <summary>
+            Создать автора
+            </summary>
+        </member>
         <member name="T:BookApiProject.Controllers.BooksController">
             Controller Books
         </member>

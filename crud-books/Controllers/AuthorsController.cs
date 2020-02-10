@@ -151,5 +151,32 @@ namespace BookApiProject.Controllers
 
             return Ok(authorsDto);
         }
+
+        //api/authors
+        /// <summary>
+        /// Создать автора
+        /// </summary>
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(Author))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public IActionResult CreateAuthor([FromBody]Author authorToCreate)
+        {
+            if(authorToCreate == null)
+                return BadRequest(ModelState);
+            
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_authorRepository.CreateAuthor(authorToCreate))
+            {
+                ModelState.AddModelError("", $"Something went wrong saving " +
+                                            $"{authorToCreate.FirstName}");
+                return StatusCode(500, ModelState);
+            }
+
+            return CreatedAtRoute("GetAuthor", new { authorId = authorToCreate.Id }, authorToCreate);
+        }
+
     }
 }
