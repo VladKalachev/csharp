@@ -6,6 +6,9 @@
     <members>
         <member name="T:BookApiProject.Controllers.AuthorsController">
             Controller Authors
+            <summary>
+            Контроллер автор
+            </summary>
         </member>
         <member name="M:BookApiProject.Controllers.AuthorsController.#ctor(BookApiProject.Services.IAuthorRepository,BookApiProject.Services.IBookRepository,BookApiProject.Services.ICountryRepository)">
             Constructor
@@ -40,6 +43,9 @@
         </member>
         <member name="T:BookApiProject.Controllers.BooksController">
             Controller Books
+            <summary>
+            Контроллер книги
+            </summary>
         </member>
         <member name="M:BookApiProject.Controllers.BooksController.#ctor(BookApiProject.Services.IBookRepository,BookApiProject.Services.IAuthorRepository,BookApiProject.Services.ICategoryRepository,BookApiProject.Services.IReviewRepository)">
             Constructor Books

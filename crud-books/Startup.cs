@@ -41,11 +41,11 @@ namespace BookApiProject
                     Version = "v1",
                     Description = "A simple example ASP.NET Core Web API",
                 });
+                
                 // comments
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-  
+                c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
 
             var connectionString = Configuration.GetConnectionString("bookDbConnectionString");

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 namespace BookApiProject.Controllers
 {
     /// Controller Books
+    /// <summary>
+    /// Контроллер книги
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController: Controller
