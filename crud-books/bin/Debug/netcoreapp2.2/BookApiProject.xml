@@ -41,6 +41,11 @@
             Создать автора
             </summary>
         </member>
+        <member name="M:BookApiProject.Controllers.AuthorsController.UpdateAuthor(System.Int32,BookApiProject.Models.Author)">
+            <summary>
+            Редактировать автора
+            </summary>
+        </member>
         <member name="T:BookApiProject.Controllers.BooksController">
             Controller Books
             <summary>

@@ -181,5 +181,39 @@ namespace BookApiProject.Controllers
             return CreatedAtRoute("GetAuthor", new { authorId = authorToCreate.Id }, authorToCreate);
         }
 
+        //api/authors/authorId
+        /// <summary>
+        /// Редактировать автора
+        /// </summary>
+        [HttpPut("{authorId}")]
+        [ProducesResponseType(204)] //no content
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(422)] 
+        [ProducesResponseType(500)]        
+        public IActionResult UpdateAuthor(int authorId, [FromBody]Author updatedAuthorInfo)
+        {
+            if (updatedAuthorInfo == null)
+                return BadRequest(ModelState);
+
+            if (authorId != updatedAuthorInfo.Id)
+                return BadRequest(ModelState);
+
+            if (!_authorRepository.AuthorExists(authorId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+             if (!_authorRepository.UpdateAuthor(updatedAuthorInfo))
+            {
+                 ModelState.AddModelError("", $"Something went wrong saving " +
+                                            $"{updatedAuthorInfo.FirstName}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
     }
 }
