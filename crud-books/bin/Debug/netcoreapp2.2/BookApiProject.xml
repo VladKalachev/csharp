@@ -46,6 +46,11 @@
             Редактировать автора
             </summary>
         </member>
+        <member name="M:BookApiProject.Controllers.AuthorsController.DeleteAuthor(System.Int32)">
+            <summary>
+            Удаление автора
+            </summary>
+        </member>
         <member name="T:BookApiProject.Controllers.BooksController">
             Controller Books
             <summary>

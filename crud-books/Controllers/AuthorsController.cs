@@ -215,5 +215,33 @@ namespace BookApiProject.Controllers
             return NoContent();
         }
 
+        //api/authors/authorId
+        /// <summary>
+        /// Удаление автора
+        /// </summary>
+        [HttpDelete("{authorId}")]
+        [ProducesResponseType(204)] //no content
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public IActionResult DeleteAuthor(int authorId)
+        {
+            if (!_authorRepository.AuthorExists(authorId))
+                return NotFound();
+
+            var reviewToDelete = _authorRepository.GetAuthor(authorId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_authorRepository.DeleteAuthor(reviewToDelete))
+            {
+                ModelState.AddModelError("", $"Something went wrong deleting author");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
     }
 }
