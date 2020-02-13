@@ -141,8 +141,57 @@ namespace BookApiProject.Controllers
             return Ok(rating);
         }
 
+        private StatusCodeResult ValidateBook(List<int> authorsId, List<int>catId, Book book)
+        {
+            if(book == null || authorsId.Count() <=0 || catId.Count() <= 0)
+            {
+                ModelState.AddModelError("", "Missing book, author, or category");
+                return BadRequest();
+            }
+
+            if(_bookRepository.IsDuplicateIsbn(book.Id, book.Isbn))
+            {
+                ModelState.AddModelError("", "Dublicate ISBN");
+                return StatusCode(422);
+            }
+
+            foreach (var id in authorsId)
+            {
+                if(!_authorRepository.AuthorExists(id))
+                {
+                    ModelState.AddModelError("", "Author Not Found");
+                    return StatusCode(404);
+                }
+            }
+
+             
+            foreach (var id in catId)
+            {
+                if(!_categoryRepository.CategoryExists(id))
+                {
+                    ModelState.AddModelError("", "Category Not Found");
+                    return StatusCode(404);
+                }
+            }
+
+            if(!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Critical Error");
+                return BadRequest();
+            }
+
+            return NoContent();
+        }
+
         //api/books
+        //api/books/bookId/rating
+        /// <summary>
+        /// Создать книгу книги
+        /// </summary>
         // [HttpPost]
+        // [ProducesResponseType(201, Type = typeof(BookDto))]
+        // [ProducesResponseType(400)]
+        // [ProducesResponseType(500)]
         // public IActionResult CreateBook(List<int> authorsId, List<int> categoriesId, Book book)
         // {
 
