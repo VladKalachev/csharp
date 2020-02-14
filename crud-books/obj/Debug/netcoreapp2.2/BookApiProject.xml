@@ -80,5 +80,10 @@
             Получить рейтирг книги
             </summary>
         </member>
+        <member name="M:BookApiProject.Controllers.BooksController.CreateBook(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32},BookApiProject.Models.Book)">
+            <summary>
+            Создать книгу книги
+            </summary>
+        </member>
     </members>
 </doc>

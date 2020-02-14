@@ -188,14 +188,27 @@ namespace BookApiProject.Controllers
         /// <summary>
         /// Создать книгу книги
         /// </summary>
-        // [HttpPost]
-        // [ProducesResponseType(201, Type = typeof(BookDto))]
-        // [ProducesResponseType(400)]
-        // [ProducesResponseType(500)]
-        // public IActionResult CreateBook(List<int> authorsId, List<int> categoriesId, Book book)
-        // {
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(Book))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public IActionResult CreateBook([FromQuery] List<int> authId, [FromQuery] List<int> catId, [FromBody] Book bookToCreate)
+        {
+            var statusCode = ValidateBook(authId, catId, bookToCreate);
 
-        // }
+            if(!ModelState.IsValid)
+                return StatusCode(statusCode.StatusCode);
+
+            if (!_bookRepository.CreateBook(authId, catId, bookToCreate))
+            {
+                ModelState.AddModelError("", $"Something went wrong saving the book" +
+                                            $"{bookToCreate.Title}");
+                return StatusCode(500, ModelState);
+            }
+
+            return CreatedAtRoute("GetBook", new { bookId = bookToCreate.Id }, bookToCreate);
+        }
 
         // //api/books/bookId
         // [HttpPut]
